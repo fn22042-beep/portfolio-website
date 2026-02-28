@@ -1,36 +1,38 @@
-import { NextResponse } from "next/server"
-import { contactSchema } from "@/lib/validations/contact"
-import { sendContactEmail } from "@/lib/email"
+import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json()
-    const parsed = contactSchema.safeParse(body)
+    const body = await request.json();
+    console.log('Form Data:', body);
 
-    if (!parsed.success) {
-      const errors = parsed.error.flatten().fieldErrors
+    // সঠিকভাবে destructure করুন (message যোগ করুন)
+    const { name, email, subject, message } = body;
+
+    // বাধ্যতামূলক ফিল্ড চেক
+    if (!name || !email || !message) {
       return NextResponse.json(
-        { success: false, errors },
+        { error: 'Missing required fields' },
         { status: 400 }
-      )
+      );
     }
 
-    const { name, email, subject, message } = parsed.data
+    const data = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: process.env.CONTACT_EMAIL || 'naim191982@gmail.com',
+      subject: subject || `New message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    });
 
-    const result = await sendContactEmail({ name, email, subject, message })
-
-    if (!result.success) {
-      return NextResponse.json(
-        { success: false, error: result.error || "Failed to send message" },
-        { status: 500 }
-      )
-    }
-
-    return NextResponse.json({ success: true, message: "Message sent successfully!" })
-  } catch {
+    console.log('Resend Response:', data);
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error:', error);
     return NextResponse.json(
-      { success: false, error: "Invalid request" },
-      { status: 400 }
-    )
+      { error: 'Failed to send message' },
+      { status: 500 }
+    );
   }
 }
