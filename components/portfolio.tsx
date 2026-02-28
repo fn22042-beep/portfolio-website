@@ -9,13 +9,13 @@ const projects = [
     category: "Logo",
     tag: "Logo + Branding",
     title: "Minimal Mark Logo",
-    image: "/images/portfolio/logo-minimal.jpg", // update with your image path
+    image: "/images/portfolio/brand-logo.png", // update with your image path
   },
   {
     category: "Logo",
     tag: "Logo",
     title: "Monogram Emblem",
-    image: "/images/portfolio/logo.jpg",
+    image: "/images/portfolio/image.png",
   },
   {
     category: "T-shirt",

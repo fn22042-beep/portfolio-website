@@ -27,7 +27,7 @@ export default function About() {
 
           <div className="flex items-center gap-6 mb-6">
             <div className="text-center rounded-xl border border-[#1e293b] bg-[#0d1117] px-6 py-4">
-              <p className="text-2xl font-bold text-white">5</p>
+              <p className="text-2xl font-bold text-white">2</p>
               <p className="text-xs text-[#94a3b8]">Years Experience</p>
             </div>
             <div className="text-center">

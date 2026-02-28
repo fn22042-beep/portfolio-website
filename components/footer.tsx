@@ -11,7 +11,7 @@ export default function Footer() {
 
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-white">3+</span>
+            <span className="text-sm font-bold text-white">2+</span>
             <span className="text-[10px] text-[#94a3b8]">Years</span>
           </div>
           <div className="flex items-center gap-2">
