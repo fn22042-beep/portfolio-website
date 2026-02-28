@@ -1,70 +1,73 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
-const categories = ["All", "Logo", "T-shirt", "Business Card", "Web Projects"]
+const categories = ["All", "Logo", "T-shirt", "Business Card", "Web Projects"];
 
 const projects = [
   {
     category: "Logo",
     tag: "Logo + Branding",
     title: "Minimal Mark Logo",
-    gradient: "from-[#6366f1] to-[#06b6d4]",
-  },
-  {
-    category: "T-shirt",
-    tag: "T-shirt + Print",
-    title: "Streetwear Tee",
-    gradient: "from-[#ec4899] to-[#f97316]",
-  },
-  {
-    category: "Business Card",
-    tag: "Business Card",
-    title: "Corporate Card",
-    gradient: "from-[#06b6d4] to-[#10b981]",
-  },
-  {
-    category: "Web Projects",
-    tag: "Web + UI",
-    title: "Landing \u2014 Eco App",
-    gradient: "from-[#3b82f6] to-[#8b5cf6]",
+    image: "/images/portfolio/logo-minimal.jpg", // update with your image path
   },
   {
     category: "Logo",
     tag: "Logo",
     title: "Monogram Emblem",
-    gradient: "from-[#8b5cf6] to-[#6366f1]",
+    image: "/images/portfolio/logo.jpg",
+  },
+  {
+    category: "T-shirt",
+    tag: "T-shirt + Print",
+    title: "Streetwear Tee",
+    image: "/images/portfolio/tshirt-streetwear.jpg",
+  },
+    {
+    category: "T-shirt",
+    tag: "T-shirt",
+    title: "Vintage Print",
+    image: "/images/portfolio/t-shirt-design-fortfollio.jpg",
   },
   {
     category: "Business Card",
     tag: "Business Card",
     title: "Minimal Card Set",
-    gradient: "from-[#06b6d4] to-[#3b82f6]",
+    image: "/images/portfolio/i-will-create-professional-buisness-card-design.jpg",
   },
   {
-    category: "T-shirt",
-    tag: "T-shirt",
-    title: "Vintage Print",
-    gradient: "from-[#f97316] to-[#ec4899]",
+    category: "Business Card",
+    tag: "Business Card",
+    title: "Corporate Card",
+    image: "/images/portfolio/I will create  professional business card design (2).jpg",
+  },
+
+  {
+    category: "Web Projects",
+    tag: "Web + UI",
+    title: "Landing — Eco App",
+    image: "/images/portfolio/Fish Frocessing.png",
   },
   {
     category: "Web Projects",
-    tag: "Web + Next.js",
+    tag: "Web + UI",
     title: "Portfolio Website",
-    gradient: "from-[#06b6d4] to-[#8b5cf6]",
+    image: "/images/portfolio/portfolio website.png",
   },
-]
+];
 
 export default function Portfolio() {
-  const [active, setActive] = useState("All")
+  const [active, setActive] = useState("All");
 
-  const filtered = active === "All" ? projects : projects.filter((p) => p.category === active)
+  const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
 
   return (
     <section id="portfolio" className="py-16 px-4 lg:px-8 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-white">Portfolio</h2>
-        <span className="text-sm text-[#94a3b8] hidden sm:inline">Selected projects across categories</span>
+        <span className="text-sm text-[#94a3b8] hidden sm:inline">
+          Selected projects across categories
+        </span>
       </div>
 
       <div className="flex items-center justify-between mb-6">
@@ -83,7 +86,9 @@ export default function Portfolio() {
             </button>
           ))}
         </div>
-        <span className="text-xs text-[#94a3b8] hidden md:inline">Hover a project to view details</span>
+        <span className="text-xs text-[#94a3b8] hidden md:inline">
+          Hover a project to view details
+        </span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -92,8 +97,14 @@ export default function Portfolio() {
             key={`${project.title}-${i}`}
             className="group relative rounded-2xl overflow-hidden border border-[#1e293b] hover:border-[#06b6d4]/50 transition-all cursor-pointer"
           >
-            <div className={`h-48 bg-gradient-to-br ${project.gradient} flex items-end p-4`}>
-              <div>
+            <div className="relative h-48 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-4">
                 <p className="text-[10px] text-white/70 mb-1">{project.tag}</p>
                 <p className="text-sm font-semibold text-white">{project.title}</p>
               </div>
@@ -102,5 +113,5 @@ export default function Portfolio() {
         ))}
       </div>
     </section>
-  )
+  );
 }
