@@ -22,7 +22,7 @@ export default function About() {
           </div>
 
           <p className="text-sm text-[#94a3b8] leading-relaxed mb-6">
-            {"I'm a passionate Graphic Designer from Bangladesh with over 5 years of experience designing logos, business cards, T-shirts, email signatures, Amazon product images, and other visual assets. I combine aesthetic sensibility with attention to detail to produce polished, brand-forward designs. Currently learning Next.js to create modern, responsive web experiences."}
+            {"I'm a passionate Graphic Designer from Bangladesh with over 2+ years of experience designing logos, business cards, T-shirts, email signatures, Amazon product images, and other visual assets. I combine aesthetic sensibility with attention to detail to produce polished, brand-forward designs. Currently learning Next.js to create modern, responsive web experiences."}
           </p>
 
           <div className="flex items-center gap-6 mb-6">
